@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/controller")
+@RequestMapping("/api/categories")
 public class CategoryRestController  {
 
   private final CategoryService categoryService;

@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <!--<link href="/static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>-->
-    <!--<script src="/static/js/bootstrap.js" type="application/javascript"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/esm/popper-utils.js"></script>-->
-
     <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
     <script src="/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
@@ -17,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Online Bookstore</a>
+        <a class="navbar-brand" href="home.html">Online Bookstore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,17 +24,12 @@
                     <a class="nav-link active" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="category.html">Categories</a>
+                    <a class="nav-link" href="/api/categories">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Product</a>
+                    <a class="nav-link" href="/books">Book</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Cart <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
+
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
@@ -52,10 +42,6 @@
                         </button>
                     </div>
                 </div>
-                <a class="btn btn-success btn-sm ml-3" href="cart.html">
-                    <i class="fa fa-shopping-cart"></i> Cart
-                    <span class="badge badge-light">3</span>
-                </a>
             </form>
         </div>
     </div>
@@ -69,32 +55,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md-5">
-            <form action="/products"
+            <form action="/books"
                   method="post"
                   enctype="multipart/form-data"
-                  th:object="${product}" >
-                <input type="text" hidden="hidden" name="id" th:value="${product.getId()}">
+                  th:object="${book}" >
+                <input type="text" hidden="hidden" name="id" th:value="${book.getId()}">
                 <div class="form-group">
-                    <label for="name">Product name</label>
+                    <label for="name">Book name</label>
                     <input type="text"
                            class="form-control"
-                           th:value="${product.getName()}"
+                           th:value="${book.getName()}"
                            id="name"
                            name="name"
                            th:field="*{name}"
                            required
-                           placeholder="Enter product name">
+                           placeholder="Enter book name">
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantity</label>
                     <input type="text"
                            class="form-control"
-                           th:value="${product.getQuantity()}"
+                           th:value="${book.getQuantity()}"
                            id="quantity"
                            th:field="*{quantity}"
                            name="quantity"
                            placeholder="Quantity">
                 </div>
+
                 <div class="form-group">
                     <h4 class="text-danger"
                         th:if="${#fields.hasErrors('price')}"
@@ -104,7 +91,7 @@
                     <label for="price">Price</label>
                     <input type="text"
                            class="form-control"
-                           th:value="${product.getPrice()}"
+                           th:value="${book.getPrice()}"
                            id="price"
                            th:field="*{price}"
                            name="price"
@@ -112,11 +99,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Manufacturer</label>
-                    <select th:field="*{manufacturer.id}" class="form-control">
+                    <label>Author</label>
+                    <select th:field="*{author.id}" class="form-control">
                         <option
-                                th:selected="${product.getManufacturer() != null && product.getManufacturer().getId() == man.getId()}"
-                                th:each="man : ${manufacturers}"
+                                th:selected="${book.getAuthor() != null && book.getAuthor().getId() == man.getId()}"
+                                th:each="man : ${authors}"
                                 th:value="${man.getId()}"
                                 th:text="${man.getName()}">
                         </option>
@@ -124,13 +111,29 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Category</label>
+                    <select th:field="*{category.id}" class="form-control">
+                        <option
+                            th:selected="${book.getCategory() != null && book.getCategory().getId() == man.getId()}"
+                            th:each="man : ${categories}"
+                            th:value="${man.getId()}"
+                            th:text="${man.getName()}">
+                        </option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
                     <label for="image">Image</label>
                     <input name="image" id="image" class="form-control" type="file"/>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a type="button" class="btn btn-primary" href="/products">Back</a>
+                <a type="button" class="btn btn-primary" href="/books">Back</a>
             </form>
+            <div class="row">
+                <a href="/books/add-new" class="btn btn-block btn-light">Add new book</a>
+            </div>
         </div>
     </div>
 </div>
@@ -144,32 +147,9 @@
                 <h5>About</h5>
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <p class="mb-0">
-                    Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant
-                    impression.
+                    Our point is to give significant, charming and also animating substance to youngsters that goes much past their normal course books.
+
                 </p>
-            </div>
-
-
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
-                <h5>Informations</h5>
-                <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
-                <ul class="list-unstyled">
-                    <li><a href="">Link 1</a></li>
-                    <li><a href="">Link 2</a></li>
-                    <li><a href="">Link 3</a></li>
-                    <li><a href="">Link 4</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
-                <h5>Others links</h5>
-                <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
-                <ul class="list-unstyled">
-                    <li><a href="">Link 1</a></li>
-                    <li><a href="">Link 2</a></li>
-                    <li><a href="">Link 3</a></li>
-                    <li><a href="">Link 4</a></li>
-                </ul>
             </div>
 
             <div class="col-md-4 col-lg-3 col-xl-3">
@@ -177,7 +157,7 @@
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <ul class="list-unstyled">
                     <li><i class="fa fa-home mr-2"></i> My company</li>
-                    <li><i class="fa fa-envelope mr-2"></i> email@example.com</li>
+                    <li><i class="fa fa-envelope mr-2"></i> niluferbasgul@hotmail.com</li>
                     <li><i class="fa fa-phone mr-2"></i> + 33 12 14 15 16</li>
                     <li><i class="fa fa-print mr-2"></i> + 33 12 14 15 16</li>
                 </ul>

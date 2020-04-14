@@ -5,8 +5,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "manufacturers")
-public class Manufacturer {
+@Table(name = "authors")
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +17,9 @@ public class Manufacturer {
     private String name;
     private String address;
 
-    public Manufacturer() {}
+    public Author() {}
 
-    public Manufacturer(Long id, String name) {
+    public Author(Long id, String name) {
         this.id = id;
         this.name = name;
     }

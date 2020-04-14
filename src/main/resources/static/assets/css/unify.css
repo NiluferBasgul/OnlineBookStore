@@ -18346,7 +18346,7 @@ body.u-body--header-side-static-right .navbar [class*="u-main-nav-"] > .hs-has-m
   box-shadow: 0 5px 5px 0px rgba(90, 90, 90, 0.075); }
 
 /* Product */
-.u-basket__product {
+.u-basket__book {
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -25956,7 +25956,7 @@ pre[class*="language-"] .toolbar-item a {
 ------------------------------------*/
 /* Quote v1 */
 .u-quote-v1::before {
-  content: "\“";
+  content: "";
   font-size: 36px;
   line-height: 0.75em;
   text-align: center;

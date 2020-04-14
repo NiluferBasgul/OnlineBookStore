@@ -4,41 +4,43 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public class Product {
+public class Book {
 
     private Long id;
     private String name;
+
+    @NotNull
+    @Min(value = 1, message = "Number of books must be bigger than 1")
     private Long numberofBooks;
 
 
     @NotNull
-    @Min(value = 2, message = "Price must be bigger than 2")
+    @Min(value = 2, message = "Price must be bigger than 1")
     private Float price;
+
+    @NotNull
+    @Min(value = 2, message = "Quantity must be bigger than 1")
     private Integer quantity;
 
     @NotNull
-    private Manufacturer manufacturer;
-
+    private Author author;
     private Category category;
-
-    // private MultipartFile photoBooks;
-
     private String imageBase64;
 
 
-    public Product(Long id,
+    public Book(Long id,
         String name,
         Long numberOfBooks,
         Float price,
         Integer quantity,
-        Manufacturer manufacturer,
+        Author author,
         Category category) {
         this.id = id;
         this.name = name;
         this.numberofBooks = numberOfBooks;
         this.price = price;
         this.quantity = quantity;
-        this.manufacturer = manufacturer;
+        this.author = author;
         this.category = category;
     }
 
@@ -78,12 +80,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Manufacturer getManufacturer() {
-        return manufacturer;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public Category getCategory() { return category; }
@@ -93,10 +95,6 @@ public class Product {
     public String getImageBase64(){ return imageBase64; }
 
     public void setImageBase64(String imageBase64) { this.imageBase64 = imageBase64; }
-
-//    public MultipartFile getphotoBooks() { return photoBooks; }
-//
-//    public void setImage(MultipartFile photoBooks) { this.photoBooks = photoBooks; }
 
 }
 
