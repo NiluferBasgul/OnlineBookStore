@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-//@Controller
-//@ResponseBody
 @RestController
 @RequestMapping("/api/authors")
 public class AuthorRestController {
@@ -40,24 +38,20 @@ public class AuthorRestController {
         return this.authorService.findById(id);
     }
 
-//    @PostMapping
-//    public Author save(@RequestParam String name,
-//                             @RequestParam String address) {
-//        Author author = new Author();
-//        author.setName(name);
-//        author.setAddress(address);
-//        return this.authorService.save(author);
-//    }
-
     @PostMapping
-    public Author save(@Valid Author author) {
+    public Author save(@RequestParam String name,
+                             @RequestParam String address) {
+        Author author = new Author();
+        author.setName(name);
+        author.setAddress(address);
         return this.authorService.save(author);
     }
 
 //    @PostMapping
-//    public Author save(@Valid @RequestBody Author author) {
+//    public Author save(@Valid Author author) {
 //        return this.authorService.save(author);
 //    }
+
 
     @PutMapping("/{id}")
     public Author update(@PathVariable Long id, @Valid Author author) {

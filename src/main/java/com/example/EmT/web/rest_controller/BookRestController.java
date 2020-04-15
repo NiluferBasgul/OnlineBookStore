@@ -52,16 +52,6 @@ public class BookRestController {
         return this.bookService.saveBook(book, image);
     }
 
-//    @PostMapping
-//    public Book saveBook(@Valid String name,
-//                               @Valid float price,
-//                               @Valid int quantity,
-//                               @PathVariable Long manifactureId,
-//                               @PathVariable Long categoryId)
-//                                throws IOException {
-//        return this.bookService.saveBook(name,price,quantity,manifactureId,categoryId);
-//    }
-//
 
     @PutMapping("/{id}")
     public Book update(@PathVariable Long id,

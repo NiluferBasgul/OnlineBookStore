@@ -11,11 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-//ovoj Bean kje se kreira samo dokolku aktiveniot profil NE e amazon (ova vazhi i nieden profil da ne e aktiven)
-//i vo toj sluchaj
-//sekade kade shto se koristi AuthorService interfejsot (kako vo kontrolerite)
-//implementacijata koja kje ja prepoznae kje bide ovaa namesto AuthorAmazonServiceImpl
 @Service
 @Profile("!amazon")
 public class AuthorServiceImpl implements AuthorService {

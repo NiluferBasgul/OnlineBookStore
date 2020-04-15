@@ -2,6 +2,7 @@ package com.example.EmT.repository.impl;
 
 import com.example.EmT.model.Author;
 import com.example.EmT.repository.AuthorRepository;
+import javax.annotation.PostConstruct;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -15,12 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-
-//ovoj Bean  kje se kreira samo dokolku aktiveniot profil e in-memory
-//i vo toj sluchaj
-//sekade kade shto se koristi AuthorRepository interfejsot (kako vo servisite)
-//implementacijata koja kje ja prepoznae kje bide ovaa
-//namesto defaultnata od Jpa
 @Repository
 @Profile("in-memory")
 public class AuthorRepositoryInMemoryImpl implements AuthorRepository {
@@ -28,20 +23,26 @@ public class AuthorRepositoryInMemoryImpl implements AuthorRepository {
     private HashMap<Long, Author> authors;
     private AtomicLong counter;
 
-    public AuthorRepositoryInMemoryImpl() {
+    @PostConstruct
+    public void init() {
         this.authors = new HashMap<>();
         this.counter = new AtomicLong(0);
-//        Author m1 = new Author(1L, "m1");
-//        Author m2 = new Author(2L, "m2");
-//        this.authors.put(m1.getId(), m1);
-//        this.authors.put(m2.getId(), m2);
-//        you can also use @PostConstruct for this,
-//        it is invoked after Constructor
+        Author m1 = new Author(1L, "J. K. Rowling");
+        Author m2 = new Author(2L, "J. R. R. Tolkien");
+        this.authors.put(m1.getId(), m1);
+        this.authors.put(m2.getId(), m2);
+
     }
+
 
     @Override
     public List<Author> findAll() {
         return new ArrayList<>(this.authors.values());
+    }
+
+    @Override
+    public List<Author> findAllByName(String name) {
+        return null;
     }
 
     @Override

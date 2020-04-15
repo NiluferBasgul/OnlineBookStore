@@ -150,7 +150,6 @@ public class BookController {
         List<Book> books = this.bookService.findAll();
         model.addAttribute("books", books);
         return "books";
-//        return "redirect:/books";
     }
 
     @PostMapping("/{id}/delete")
