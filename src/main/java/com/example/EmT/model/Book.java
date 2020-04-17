@@ -18,9 +18,6 @@ public class Book {
     @Min(value = 2, message = "Price must be bigger than 1")
     private Float price;
 
-    @NotNull
-    @Min(value = 2, message = "Quantity must be bigger than 1")
-    private Integer quantity;
 
     @NotNull
     private Author author;
@@ -32,14 +29,12 @@ public class Book {
         String name,
         Long numberOfBooks,
         Float price,
-        Integer quantity,
         Author author,
         Category category) {
         this.id = id;
         this.name = name;
         this.numberofBooks = numberOfBooks;
         this.price = price;
-        this.quantity = quantity;
         this.author = author;
         this.category = category;
     }
@@ -70,14 +65,6 @@ public class Book {
 
     public void setPrice(Float price) {
         this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public Author getAuthor() {

@@ -66,7 +66,7 @@
                         <th scope="col"></th>
                         <th scope="col">Book</th>
                         <th scope="col">Available</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Number of Books</th>
                         <th scope="col">Price</th>
                         <th scope="col">Author</th>
                         <th></th>
@@ -76,8 +76,8 @@
                     <tr th:each="book : ${books}">
                         <td><img th:src="${book.getImageBase64()}"/></td>
                         <td th:text="${book.getName()}"></td>
-                        <td th:text="${book.getQuantity() > 0 } ? 'In stock' : 'Out of stock'"></td>
-                        <td th:text="${book.getQuantity()}"></td>
+                        <td th:text="${book.getnumberofBooks() > 0 } ? 'In stock' : 'Out of stock'"></td>
+                        <td th:text="${book.getnumberofBooks()}"></td>
                         <td th:text="${book.getPrice()}"></td>
                         <td th:text="${book.getAuthor() != null} ? ${book.getAuthor().getName()} : 'No Author'"></td>
                         <td class="text-right">

@@ -54,7 +54,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book saveBook(String name, Float price, Integer quantity, Long AuthorId, Long CategoryId)
+    public Book saveBook(String name, Float price, Long AuthorId, Long CategoryId)
         throws IOException {
         return null;
     }

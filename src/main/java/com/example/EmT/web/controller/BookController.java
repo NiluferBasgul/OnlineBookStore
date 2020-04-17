@@ -76,7 +76,7 @@ public class BookController {
         model.addAttribute("authors", authors);
         model.addAttribute("categories", categories);
 
-        model.addAttribute("book", new Book(null,"", 1L,0f,null,null,null));
+        model.addAttribute("book", new Book(null,"", 1L,0f,null,null));
         return "add-book";
     }
 
@@ -128,7 +128,6 @@ public class BookController {
     public String saveBook(
             @RequestParam String name,
                               @RequestParam Float price,
-                              @RequestParam Integer quantity,
                               @RequestParam Optional<Long> authorId,
                               @RequestParam Optional<Long> categoryId,
             @Valid Book book,
@@ -146,7 +145,7 @@ public class BookController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.bookService.saveBook(name,price,quantity,authorId.orElse(45L),categoryId.orElse(34L));
+        this.bookService.saveBook(name,price,authorId.orElse(45L),categoryId.orElse(34L));
         List<Book> books = this.bookService.findAll();
         model.addAttribute("books", books);
         return "books";

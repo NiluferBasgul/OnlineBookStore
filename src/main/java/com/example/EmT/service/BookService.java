@@ -12,7 +12,7 @@ public interface BookService {
     List<Book> findAllByCategoryId(Long categoryId);
     List<Book> findAllSortedByPrice(boolean asc);
     Book findById(Long id);
-    Book saveBook(String name, Float price, Integer quantity, Long AuthorId, Long CategoryId) throws IOException;
+    Book saveBook(String name, Float price, Long AuthorId, Long CategoryId) throws IOException;
     Book saveBook(Book book, MultipartFile image) throws IOException;
     Book updateBook(Long id, Book book, MultipartFile image) throws IOException;
     void deleteById(Long id);

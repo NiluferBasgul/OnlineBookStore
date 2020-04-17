@@ -22,10 +22,10 @@ public class BookRepositoryImpl implements BookRepository {
         this.books = new HashMap<>();
         Long id = this.generateKey();
         Long numberOfBooks = this.generateKey();
-        this.books.put(id, new Book(id,"Harry Potter",numberOfBooks,1f,null,null,null));
+        this.books.put(id, new Book(id,"Harry Potter",numberOfBooks,1f,null,null));
         id = this.generateKey();
         numberOfBooks = this.generateKey();
-        this.books.put(id, new Book(id,"Lord of the Rings",numberOfBooks, 1f,null,null,null));
+        this.books.put(id, new Book(id,"Lord of the Rings",numberOfBooks, 1f,null,null));
     }
 
 
